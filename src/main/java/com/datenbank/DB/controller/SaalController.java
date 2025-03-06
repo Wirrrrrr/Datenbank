@@ -1,7 +1,7 @@
 package com.datenbank.DB.controller;
 
 import com.datenbank.DB.DBKlassen.Saal;
-import com.datenbank.DB.repository.SaalRepository;
+import com.datenbank.DB.repository.mongo.SaalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

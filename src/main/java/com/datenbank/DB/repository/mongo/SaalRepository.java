@@ -1,4 +1,4 @@
-package com.datenbank.DB.repository;
+package com.datenbank.DB.repository.mongo;
 
 import com.datenbank.DB.DBKlassen.Saal;
 import org.springframework.data.mongodb.repository.MongoRepository;
