@@ -25,8 +25,8 @@ public class MessageListener {
 
             //Unaussprechlicher If-Block
             if (command instanceof SaveCinemaCommand saveCinemaCommand) {
-                datenbankService.save(saveCinemaCommand.getCinema());
-                saveCinemaCommand.setResult(true);
+               // datenbankService.save(saveCinemaCommand.getCinema());
+                //saveCinemaCommand.setResult(true);
             }
             if (command instanceof SaveRowCommand saveRowCommand) {
                 datenbankService.save(saveRowCommand.getRow());

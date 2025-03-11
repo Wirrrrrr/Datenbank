@@ -1,6 +1,7 @@
 package com.datenbank.DB.DBKlassen.postgres.Model.Cinema;
 
-import Informationsinfrastrukturen.IIS.Model.Exceptions.CinemaModifyException;
+import com.datenbank.DB.DBKlassen.postgres.Model.Exceptions.CinemaModifyException;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,10 +11,15 @@ import java.util.Optional;
 
 @Setter
 @Getter
+@Entity
 public class Cinema {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long theaterNumber;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "theater_Number")  // Fremdschlüssel in Seat
     private List<Row> rows = new ArrayList<Row>();
 
     private Boolean ready = Boolean.FALSE;
