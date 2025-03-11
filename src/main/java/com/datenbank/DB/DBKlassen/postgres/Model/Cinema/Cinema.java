@@ -1,6 +1,6 @@
 package com.datenbank.DB.DBKlassen.postgres.Model.Cinema;
 
-import Informationsinfrastrukturen.IIS.Model.Exceptions.CinemaModifyException;
+import com.datenbank.DB.DBKlassen.postgres.Model.Exceptions.CinemaModifyException;
 import lombok.Getter;
 import lombok.Setter;
 

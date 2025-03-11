@@ -1,7 +1,7 @@
 package com.datenbank.DB.DBKlassen.postgres.Model;
 
-import Informationsinfrastrukturen.IIS.Model.Cinema.Cinema;
-import Informationsinfrastrukturen.IIS.Model.Cinema.Seat;
+import com.datenbank.DB.DBKlassen.postgres.Model.Cinema.Cinema;
+import com.datenbank.DB.DBKlassen.postgres.Model.Cinema.Seat;
 import lombok.Getter;
 import lombok.Setter;
 
