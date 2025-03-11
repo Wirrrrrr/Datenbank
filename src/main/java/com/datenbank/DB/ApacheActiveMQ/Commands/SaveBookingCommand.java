@@ -1,31 +1,31 @@
 package com.datenbank.DB.ApacheActiveMQ.Commands;
 
 import Commands.Command;
-import com.datenbank.DB.DBKlassen.postgres.Model.Cinema.Cinema;
+import com.datenbank.DB.DBKlassen.postgres.Model.Booking;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SaveCinemaCommand extends Command<Boolean> {
-    private final Cinema cinema;
+public class SaveBookingCommand extends Command<Boolean> {
+    private final Booking booking;
 
     @JsonCreator
-    public SaveCinemaCommand(@JsonProperty("cinema") Cinema cinema) {
-        this.cinema = cinema;
+    public SaveBookingCommand(@JsonProperty("booking") Booking booking) {
+        this.booking = booking;
     }
 
     @Override
     public void execute() {
         try {
-            System.out.println("Speichere Kino: " + cinema);
+            System.out.println("Speichere Buchung: " + booking);
             // Hier würde der Datenbank-Speichervorgang stattfinden:
-            // datenbankService.save(cinema);
+            // datenbankService.save(booking);
             this.result = true; // Erfolgreich gespeichert
         } catch (Exception e) {
             this.e = e;
         }
     }
 
-    public Cinema getCinema() {
-        return cinema;
+    public Booking getBooking() {
+        return booking;
     }
 }

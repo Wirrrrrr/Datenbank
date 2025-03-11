@@ -2,7 +2,9 @@ package com.datenbank.DB.ApacheActiveMQ;
 
 import Commands.Command;
 import Commands.CommandSerializer;
-import com.datenbank.DB.ApacheActiveMQ.Commands.SaveCinemaCommand;
+import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveCinemaCommand;
+import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveRowCommand;
+import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveSeatCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -25,6 +27,14 @@ public class MessageListener {
             if (command instanceof SaveCinemaCommand saveCinemaCommand) {
                 datenbankService.save(saveCinemaCommand.getCinema());
                 saveCinemaCommand.setResult(true);
+            }
+            if (command instanceof SaveRowCommand saveRowCommand) {
+                datenbankService.save(saveRowCommand.getRow());
+                saveRowCommand.setResult(true);
+            }
+            if (command instanceof SaveSeatCommand saveSeatCommand) {
+                datenbankService.save(saveSeatCommand.getSeat());
+                saveSeatCommand.setResult(true);
             }
 
 
