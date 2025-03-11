@@ -1,4 +1,4 @@
-package com.datenbank.DB.ApacheActiveMQ.Commands;
+package Commands;
 
 /**
  * A command targeted at a service (object)

@@ -1,4 +1,4 @@
-package com.datenbank.DB.ApacheActiveMQ.Commands;
+package Commands;
 
 /**
  * A command targeted at an object of type @param <T> and returning a value of type @param <R>

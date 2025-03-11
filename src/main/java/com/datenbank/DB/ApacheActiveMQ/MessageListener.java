@@ -1,25 +1,28 @@
 package com.datenbank.DB.ApacheActiveMQ;
 
+import Commands.Command;
+import Commands.CommandSerializer;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class MessageListener {
 
     private final MessageSender messageSender;
 
-    public MessageListener(MessageSender messageSender) {
-        this.messageSender = messageSender;
-    }
-
     @JmsListener(destination = "requestQueue")
-    public void receiveMessage(String message) {
-        System.out.println("Anfrage empfangen: " + message);
+    public void receiveRequest(String json) {
+        try {
+            Command<?> command = CommandSerializer.deserialize(json);
+            System.out.println("Empfangenes Command: " + command.getId());
 
-        // Simulierte Verarbeitung
-        String response = "Antwort auf: " + message;
+            command.execute(); // Command ausführen
 
-        // Antwort zurück an die Webanwendung senden
-        messageSender.sendResponse(response);
+            messageSender.sendResponse(command); // Antwort zurücksenden
+        } catch (Exception e) {
+            System.err.println("Fehler bei der Verarbeitung der Anfrage: " + e.getMessage());
+        }
     }
 }
