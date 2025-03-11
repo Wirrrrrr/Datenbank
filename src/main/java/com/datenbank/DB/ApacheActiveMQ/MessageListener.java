@@ -5,9 +5,7 @@ import Commands.CommandSerializer;
 import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveCinemaCommand;
 import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveRowCommand;
 import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveSeatCommand;
-import com.datenbank.DB.repository.postgres.CinemaRepository;
-import com.datenbank.DB.repository.postgres.RowRepository;
-import com.datenbank.DB.repository.postgres.SeatRepository;
+import com.datenbank.DB.ApacheActiveMQ.Commands.SaveBookingCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -17,12 +15,6 @@ import org.springframework.stereotype.Component;
 public class MessageListener {
 
     private final MessageSender messageSender;
-
-    private final RowRepository rowRepository;
-
-    private final SeatRepository seatRepository;
-
-    private final CinemaRepository cinemaRepository;
 
     @JmsListener(destination = "requestQueue")
     public void receiveRequest(String json) {
@@ -42,6 +34,10 @@ public class MessageListener {
             }
             if (command instanceof SaveSeatCommand saveSeatCommand) {
                 saveSeatCommand.setResult(seatRepository.save(saveSeatCommand.getSeat()));
+            }
+            if (command instanceof SaveBookingCommand saveBookingCommand) {
+                datenbankService.save(saveBookingCommand.getBooking());
+                saveBookingCommand.setResult(true);
             }
 
 

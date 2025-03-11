@@ -5,7 +5,7 @@ import com.datenbank.DB.DBKlassen.postgres.Model.Booking;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SaveBookingCommand extends Command<Boolean> {
+public class SaveBookingCommand extends Command<Booking> {
     private final Booking booking;
 
     @JsonCreator
