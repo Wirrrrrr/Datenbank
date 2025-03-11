@@ -1,4 +1,4 @@
-package com.datenbank.DB.ApacheActiveMQ.Commands;
+package Commands.Commands;
 
 import Commands.Command;
 import com.datenbank.DB.DBKlassen.postgres.Model.Movie;
@@ -19,7 +19,7 @@ public class SaveMovieCommand extends Command<Movie> {
             System.out.println("Speichere Film: " + movie);
             // Hier würde der Datenbank-Speichervorgang stattfinden:
             // datenbankService.save(movie);
-            this.result = true; // Erfolgreich gespeichert
+        //    this.result = true; // Erfolgreich gespeichert
         } catch (Exception e) {
             this.e = e;
         }

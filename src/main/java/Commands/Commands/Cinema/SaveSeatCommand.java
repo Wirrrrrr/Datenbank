@@ -1,4 +1,4 @@
-package com.datenbank.DB.ApacheActiveMQ.Commands.Cinema;
+package Commands.Commands.Cinema;
 
 import Commands.Command;
 import com.datenbank.DB.DBKlassen.postgres.Model.Cinema.Seat;

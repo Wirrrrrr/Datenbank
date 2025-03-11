@@ -2,11 +2,9 @@ package com.datenbank.DB.ApacheActiveMQ;
 
 import Commands.Command;
 import Commands.CommandSerializer;
-import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveCinemaCommand;
-import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveRowCommand;
-import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveSeatCommand;
-import com.datenbank.DB.ApacheActiveMQ.Commands.SaveBookingCommand;
-import com.datenbank.DB.ApacheActiveMQ.Commands.SaveMovieCommand;
+import Commands.Commands.Cinema.SaveCinemaCommand;
+import Commands.Commands.Cinema.SaveRowCommand;
+import Commands.Commands.Cinema.SaveSeatCommand;
 import com.datenbank.DB.repository.postgres.CinemaRepository;
 import com.datenbank.DB.repository.postgres.RowRepository;
 import com.datenbank.DB.repository.postgres.SeatRepository;
@@ -44,14 +42,14 @@ public class MessageListener {
             if (command instanceof SaveSeatCommand saveSeatCommand) {
                 saveSeatCommand.setResult(seatRepository.save(saveSeatCommand.getSeat()));
             }
-            if (command instanceof SaveBookingCommand saveBookingCommand) {
+            /*if (command instanceof SaveBookingCommand saveBookingCommand) {
                 datenbankService.save(saveBookingCommand.getBooking());
                 saveBookingCommand.setResult(true);
             }
             if (command instanceof SaveMovieCommand saveMovieCommand) {
                 datenbankService.save(saveMovieCommand.getMovie());
                 saveMovieCommand.setResult(true);
-            }
+            }*/
 
 
             messageSender.sendResponse(command); // Antwort zurücksenden
