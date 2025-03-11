@@ -6,7 +6,7 @@ import com.datenbank.DB.DBKlassen.postgres.Model.Cinema.Row;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SaveRowCommand extends Command<Boolean> {
+public class SaveRowCommand extends Command<Row> {
     private final Row row;
 
     @JsonCreator

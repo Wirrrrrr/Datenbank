@@ -5,7 +5,7 @@ import com.datenbank.DB.DBKlassen.postgres.Model.Cinema.Cinema;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SaveCinemaCommand extends Command<Boolean> {
+public class SaveCinemaCommand extends Command<Cinema> {
     private final Cinema cinema;
 
     @JsonCreator

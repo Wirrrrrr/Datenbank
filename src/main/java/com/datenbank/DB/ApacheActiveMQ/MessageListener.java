@@ -5,6 +5,7 @@ import Commands.CommandSerializer;
 import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveCinemaCommand;
 import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveRowCommand;
 import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveSeatCommand;
+import com.datenbank.DB.ApacheActiveMQ.Commands.SaveBookingCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,10 @@ public class MessageListener {
             if (command instanceof SaveSeatCommand saveSeatCommand) {
                 datenbankService.save(saveSeatCommand.getSeat());
                 saveSeatCommand.setResult(true);
+            }
+            if (command instanceof SaveBookingCommand saveBookingCommand) {
+                datenbankService.save(saveBookingCommand.getBooking());
+                saveBookingCommand.setResult(true);
             }
 
 
