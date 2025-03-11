@@ -39,6 +39,10 @@ public class MessageListener {
                 datenbankService.save(saveBookingCommand.getBooking());
                 saveBookingCommand.setResult(true);
             }
+            if (command instanceof SaveMovieCommand saveMovieCommand) {
+                datenbankService.save(saveMovieCommand.getMovie());
+                saveMovieCommand.setResult(true);
+            }
 
 
             messageSender.sendResponse(command); // Antwort zurücksenden
