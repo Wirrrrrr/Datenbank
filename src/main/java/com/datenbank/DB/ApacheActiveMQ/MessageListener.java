@@ -1,4 +1,4 @@
-package com.datenbank.ActiveMQ;
+package com.datenbank.DB.ApacheActiveMQ;
 
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -17,9 +17,9 @@ public class MessageListener {
         System.out.println("📥 Anfrage empfangen: " + message);
 
         // Simulierte Verarbeitung
-        String response = "Antwort auf: " + message;
+      //  String response = "Antwort auf: " + message;
 
         // Antwort zurück an die Webanwendung senden
-        messageSender.sendResponse(response);
+       // messageSender.sendResponse(response);
     }
 }

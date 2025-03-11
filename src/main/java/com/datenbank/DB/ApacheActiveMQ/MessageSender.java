@@ -1,9 +1,9 @@
-package com.datenbank.ActiveMQ;
+package com.datenbank.DB.ApacheActiveMQ;
 
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.jms.Queue;
+import jakarta.jms.Queue;
 
 @Service
 public class MessageSender {
