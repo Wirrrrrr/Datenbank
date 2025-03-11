@@ -1,4 +1,4 @@
-package com.datenbank.DB.ApacheActiveMQ;
+package com.datenbank.DB.ApacheActiveMQ.Commands;
 import java.io.Serializable;
 /**
  * An arbitrary command to call an operation, which returns a value of type R or an exception

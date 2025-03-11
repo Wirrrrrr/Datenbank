@@ -14,12 +14,12 @@ public class MessageListener {
 
     @JmsListener(destination = "requestQueue")
     public void receiveMessage(String message) {
-        System.out.println("📥 Anfrage empfangen: " + message);
+        System.out.println("Anfrage empfangen: " + message);
 
         // Simulierte Verarbeitung
-      //  String response = "Antwort auf: " + message;
+        String response = "Antwort auf: " + message;
 
         // Antwort zurück an die Webanwendung senden
-       // messageSender.sendResponse(response);
+        messageSender.sendResponse(response);
     }
 }

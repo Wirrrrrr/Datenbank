@@ -18,6 +18,6 @@ public class MessageSender {
 
     public void sendResponse(String message) {
         jmsTemplate.convertAndSend(responseQueue, message);
-        System.out.println("📨 Antwort gesendet: " + message);
+        System.out.println("Antwort gesendet: " + message);
     }
 }
