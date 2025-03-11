@@ -1,11 +1,15 @@
 package Commands;
+import com.datenbank.DB.DBKlassen.postgres.Model.Cinema.Row;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.UUID;
 /**
  * An arbitrary command to call an operation, which returns a value of type R or an exception
  * @param <R>
  */
+@Setter
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "@class")
 public abstract class Command<R> implements Serializable {
     private final String id;  // Einzigartige ID

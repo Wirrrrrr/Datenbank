@@ -5,7 +5,7 @@ import com.datenbank.DB.DBKlassen.postgres.Model.Cinema.Seat;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SaveSeatCommand extends Command<Boolean> {
+public class SaveSeatCommand extends Command<Seat> {
     private final Seat seat;
 
     @JsonCreator
@@ -19,7 +19,6 @@ public class SaveSeatCommand extends Command<Boolean> {
             System.out.println("Speichere Sitz: " + seat);
             // Hier würde der Datenbank-Speichervorgang stattfinden:
             // datenbankService.save(seat);
-            this.result = true; // Erfolgreich gespeichert
         } catch (Exception e) {
             this.e = e;
         }

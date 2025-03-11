@@ -5,6 +5,9 @@ import Commands.CommandSerializer;
 import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveCinemaCommand;
 import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveRowCommand;
 import com.datenbank.DB.ApacheActiveMQ.Commands.Cinema.SaveSeatCommand;
+import com.datenbank.DB.repository.postgres.CinemaRepository;
+import com.datenbank.DB.repository.postgres.RowRepository;
+import com.datenbank.DB.repository.postgres.SeatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -14,6 +17,12 @@ import org.springframework.stereotype.Component;
 public class MessageListener {
 
     private final MessageSender messageSender;
+
+    private final RowRepository rowRepository;
+
+    private final SeatRepository seatRepository;
+
+    private final CinemaRepository cinemaRepository;
 
     @JmsListener(destination = "requestQueue")
     public void receiveRequest(String json) {
@@ -25,16 +34,14 @@ public class MessageListener {
 
             //Unaussprechlicher If-Block
             if (command instanceof SaveCinemaCommand saveCinemaCommand) {
-               // datenbankService.save(saveCinemaCommand.getCinema());
-                //saveCinemaCommand.setResult(true);
+               ;
+                saveCinemaCommand.setResult(cinemaRepository.save(saveCinemaCommand.getCinema()));
             }
             if (command instanceof SaveRowCommand saveRowCommand) {
-                datenbankService.save(saveRowCommand.getRow());
-                saveRowCommand.setResult(true);
+                saveRowCommand.setResult(rowRepository.save(saveRowCommand.getRow()));
             }
             if (command instanceof SaveSeatCommand saveSeatCommand) {
-                datenbankService.save(saveSeatCommand.getSeat());
-                saveSeatCommand.setResult(true);
+                saveSeatCommand.setResult(seatRepository.save(saveSeatCommand.getSeat()));
             }
 
 
