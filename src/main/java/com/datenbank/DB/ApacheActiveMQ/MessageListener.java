@@ -2,6 +2,7 @@ package com.datenbank.DB.ApacheActiveMQ;
 
 import Commands.Command;
 import Commands.CommandSerializer;
+import com.datenbank.DB.ApacheActiveMQ.Commands.SaveCinemaCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,13 @@ public class MessageListener {
             System.out.println("Empfangenes Command: " + command.getId());
 
             command.execute(); // Command ausführen
+
+            //Unaussprechlicher If-Block
+            if (command instanceof SaveCinemaCommand saveCinemaCommand) {
+                datenbankService.save(saveCinemaCommand.getCinema());
+                saveCinemaCommand.setResult(true);
+            }
+
 
             messageSender.sendResponse(command); // Antwort zurücksenden
         } catch (Exception e) {
