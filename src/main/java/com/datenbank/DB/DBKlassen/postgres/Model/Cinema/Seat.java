@@ -17,5 +17,11 @@ public class Seat {
 
     @Enumerated(EnumType.STRING)
     private SeatCategory seatCategory;
+
+    @Override
+    public String toString() {
+        return String.format("{ \"seatID\": %d, \"seatNumber\": %d, \"seatCategory\": \"%s\" }",
+                seatID, seatNumber, seatCategory);
+    }
 }
 

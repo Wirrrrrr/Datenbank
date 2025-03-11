@@ -19,7 +19,6 @@ public class SaveMovieCommand extends Command<Movie> {
             System.out.println("Speichere Film: " + movie);
             // Hier würde der Datenbank-Speichervorgang stattfinden:
             // datenbankService.save(movie);
-        //    this.result = true; // Erfolgreich gespeichert
         } catch (Exception e) {
             this.e = e;
         }

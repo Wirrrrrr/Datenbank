@@ -19,7 +19,6 @@ public class SaveBookingCommand extends Command<Booking> {
             System.out.println("Speichere Buchung: " + booking);
             // Hier würde der Datenbank-Speichervorgang stattfinden:
             // datenbankService.save(booking);
-        //    this.result = true; // Erfolgreich gespeichert
         } catch (Exception e) {
             this.e = e;
         }
