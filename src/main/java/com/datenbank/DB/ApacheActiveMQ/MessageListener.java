@@ -4,6 +4,7 @@ import Commands.Command;
 import Commands.CommandSerializer;
 import Commands.Commands.*;
 import Commands.Commands.Cinema.*;
+import com.datenbank.DB.repository.mongo.RevenueRepository;
 import com.datenbank.DB.repository.postgres.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jms.annotation.JmsListener;
@@ -28,6 +29,7 @@ public class MessageListener {
     private final BookingRepository bookingRepository;
 
     private final ScreeningRepository screeningRepository;
+    private final RevenueRepository revenueRepository;
 
     @JmsListener(destination = "requestQueue")
     public void receiveRequest(String json) {
@@ -53,7 +55,6 @@ public class MessageListener {
                     System.out.println("Empfangener Command: " + saveSeatCommand.getSeat().toString());
                     saveSeatCommand.setResult(seatRepository.save(saveSeatCommand.getSeat()));
                 }
-
                 case FindMovieCommand findMovieCommand -> {
                     findMovieCommand.setResult(movieRepository.find(findMovieCommand.getMovieId()));
                 }
@@ -83,23 +84,23 @@ public class MessageListener {
                     findSeatCommand.setResult(seatRepository.find(findSeatCommand.getSeatId()));
                 }
                 case SaveReservationCommand saveReservationCommand -> {
-                    datenbankService.save(saveReservationCommand.getReservation());
+                    reservationRepository.save(saveReservationCommand.getReservation());
                     saveReservationCommand.setResult(true);
                 }
                 case SaveRevenueCommand saveRevenueCommand -> {
-                    datenbankService.save(saveRevenueCommand.getRevenue());
+                    revenueRepository.save(saveRevenueCommand.getRevenue());
                     saveRevenueCommand.setResult(true);
                 }
                 case SaveBookingCommand saveBookingCommand -> {
-                    datenbankService.save(saveBookingCommand.getBooking());
+                    bookingRepository.save(saveBookingCommand.getBooking());
                     saveBookingCommand.setResult(true);
                 }
                 case SaveMovieCommand saveMovieCommand -> {
-                    datenbankService.save(saveMovieCommand.getMovie());
+                    movieRepository.save(saveMovieCommand.getMovie());
                     saveMovieCommand.setResult(true);
                 }
                 case SaveScreeningCommand saveScreeningCommand -> {
-                    datenbankService.save(saveScreeningCommand.getScreening());
+                    screeningRepository.save(saveScreeningCommand.getScreening());
                     saveScreeningCommand.setResult(true);
                 }
 
