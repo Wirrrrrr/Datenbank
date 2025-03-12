@@ -7,7 +7,6 @@ import Commands.Commands.Cinema.SaveRowCommand;
 import Commands.Commands.Cinema.SaveSeatCommand;
 import Commands.Commands.SaveBookingCommand;
 import Commands.Commands.SaveMovieCommand;
-import Commands.Commands.SavePairCommand;
 import Commands.Commands.SaveScreeningCommand;
 import com.datenbank.DB.repository.postgres.CinemaRepository;
 import com.datenbank.DB.repository.postgres.RowRepository;
@@ -37,35 +36,46 @@ public class MessageListener {
             command.execute(); // Command ausführen
 
 
-
             //Unaussprechlicher If-Block
-            if (command instanceof SaveCinemaCommand saveCinemaCommand) {
-                saveCinemaCommand.setResult(cinemaRepository.save(saveCinemaCommand.getCinema()));
+            switch (command) {
+                case SaveCinemaCommand saveCinemaCommand ->
+                     {
+                         System.out.println(saveCinemaCommand.getCinema().toString());
+                         saveCinemaCommand.setResult(cinemaRepository.save(saveCinemaCommand.getCinema()));
+                     }
+
+                case SaveRowCommand saveRowCommand ->
+                        saveRowCommand.setResult(rowRepository.save(saveRowCommand.getRow()));
+
+                case SaveSeatCommand saveSeatCommand -> {
+                    System.out.println("Empfangener Command: " + saveSeatCommand.getSeat().toString());
+                    saveSeatCommand.setResult(seatRepository.save(saveSeatCommand.getSeat()));
+                }
+
+    /*case SaveBookingCommand saveBookingCommand -> {
+        datenbankService.save(saveBookingCommand.getBooking());
+        saveBookingCommand.setResult(true);
+    }
+
+    case SaveMovieCommand saveMovieCommand -> {
+        datenbankService.save(saveMovieCommand.getMovie());
+        saveMovieCommand.setResult(true);
+    }
+
+    case SaveScreeningCommand saveScreeningCommand -> {
+        datenbankService.save(saveScreeningCommand.getScreening());
+        saveScreeningCommand.setResult(true);
+
+    }
+*/
+
+                default -> throw new IllegalArgumentException("Unbekanntes Command: " + command.getClass().getName());
+
             }
-            if (command instanceof SaveRowCommand saveRowCommand) {
-                saveRowCommand.setResult(rowRepository.save(saveRowCommand.getRow()));
-            }
-            if (command instanceof SaveSeatCommand saveSeatCommand) {
-                System.out.println("Empfangenes Command: " + saveSeatCommand.getSeat().toString());
-                saveSeatCommand.setResult(seatRepository.save(saveSeatCommand.getSeat()));
-            }
-            if (command instanceof SaveBookingCommand saveBookingCommand) {
-                datenbankService.save(saveBookingCommand.getBooking());
-                saveBookingCommand.setResult(true);
-            }
-            if (command instanceof SaveMovieCommand saveMovieCommand) {
-                datenbankService.save(saveMovieCommand.getMovie());
-                saveMovieCommand.setResult(true);
-            }
-            if (command instanceof SaveScreeningCommand saveScreeningCommand) {
-                datenbankService.save(saveScreeningCommand.getScreening());
-                saveScreeningCommand.setResult(true);
+                messageSender.sendResponse(command); // Antwort zurücksenden
+            } catch(Exception e){
+                System.err.println("Fehler bei der Verarbeitung der Anfrage: " + e.getMessage());
             }
 
-
-            messageSender.sendResponse(command); // Antwort zurücksenden
-        } catch (Exception e) {
-            System.err.println("Fehler bei der Verarbeitung der Anfrage: " + e.getMessage());
-        }
     }
 }
