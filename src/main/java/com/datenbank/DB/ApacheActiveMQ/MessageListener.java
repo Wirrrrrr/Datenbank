@@ -55,53 +55,53 @@ public class MessageListener {
                     System.out.println("Empfangener Command: " + saveSeatCommand.getSeat().toString());
                     saveSeatCommand.setResult(seatRepository.save(saveSeatCommand.getSeat()));
                 }
-                case FindMovieCommand findMovieCommand -> {
-                    findMovieCommand.setResult(movieRepository.find(findMovieCommand.getMovieId()));
-                }
-                case FindReservationCommand findReservationCommand -> {
-                    findReservationCommand.setResult(reservationRepository.find(findReservationCommand.getReservationId()));
-                }
                 case DeleteReservationCommand deleteReservationCommand -> {
                     reservationRepository.delete(deleteReservationCommand.getReservation());
-                    deleteReservationCommand.setResult(true);
+                    deleteReservationCommand.setResult(reservationRepository.save(deleteReservationCommand.getReservation()));
+                }
+                case FindMovieCommand findMovieCommand -> {
+                    //findMovieCommand.setResult(movieRepository.find(findMovieCommand.getMovieId()));
+                }
+                case FindReservationCommand findReservationCommand -> {
+                    //findReservationCommand.setResult(reservationRepository.find(findReservationCommand.getReservationId()));
                 }
                 case FindBookingCommand findBookingCommand -> {
-                    findBookingCommand.setResult(bookingRepository.find(findBookingCommand.getBookingId()));
+                    //findBookingCommand.setResult(bookingRepository.find(findBookingCommand.getBookingId()));
                 }
                 case FindScreeningByMovieCommand findScreeningByMovieCommand -> {
-                    findScreeningByMovieCommand.setResult(screeningRepository.findByMovie(findScreeningByMovieCommand.getMovieId()));
+                    //findScreeningByMovieCommand.setResult(screeningRepository.findByMovie(findScreeningByMovieCommand.getMovieId()));
                 }
                 case FindScreeningCommand findScreeningCommand -> {
-                    findScreeningCommand.setResult(screeningRepository.find(findScreeningCommand.getScreeningId()));
+                    //findScreeningCommand.setResult(screeningRepository.find(findScreeningCommand.getScreeningId()));
                 }
                 case FindCinemaCommand findCinemaCommand -> {
-                    findCinemaCommand.setResult(cinemaRepository.find(findCinemaCommand.getCinemaId()));
+                    //findCinemaCommand.setResult(cinemaRepository.find(findCinemaCommand.getCinemaId()));
                 }
                 case FindRowCommand findRowCommand -> {
-                    findRowCommand.setResult(rowRepository.find(findRowCommand.getRowKey()));
+                    //findRowCommand.setResult(rowRepository.find(findRowCommand.getRowKey()));
                 }
                 case FindSeatCommand findSeatCommand -> {
-                    findSeatCommand.setResult(seatRepository.find(findSeatCommand.getSeatId()));
+                    //findSeatCommand.setResult(seatRepository.find(findSeatCommand.getSeatId()));
                 }
                 case SaveReservationCommand saveReservationCommand -> {
                     reservationRepository.save(saveReservationCommand.getReservation());
-                    saveReservationCommand.setResult(true);
+                    saveReservationCommand.setResult(reservationRepository.save(saveReservationCommand.getReservation()));
                 }
                 case SaveRevenueCommand saveRevenueCommand -> {
                     revenueRepository.save(saveRevenueCommand.getRevenue());
-                    saveRevenueCommand.setResult(true);
+                    saveRevenueCommand.setResult(revenueRepository.save(saveRevenueCommand.getRevenue()));
                 }
                 case SaveBookingCommand saveBookingCommand -> {
                     bookingRepository.save(saveBookingCommand.getBooking());
-                    saveBookingCommand.setResult(true);
+                    saveBookingCommand.setResult(bookingRepository.save(saveBookingCommand.getBooking()));
                 }
                 case SaveMovieCommand saveMovieCommand -> {
                     movieRepository.save(saveMovieCommand.getMovie());
-                    saveMovieCommand.setResult(true);
+                    saveMovieCommand.setResult(movieRepository.save(saveMovieCommand.getMovie()));
                 }
                 case SaveScreeningCommand saveScreeningCommand -> {
                     screeningRepository.save(saveScreeningCommand.getScreening());
-                    saveScreeningCommand.setResult(true);
+                    saveScreeningCommand.setResult(screeningRepository.save(saveScreeningCommand.getScreening()));
                 }
 
 
